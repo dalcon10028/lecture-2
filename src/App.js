@@ -12,12 +12,16 @@ const lazyWithPreload = (importFunction) => {
 };
 
 const LazyImageModal = lazyWithPreload(() => import("./components/ImageModal"));
+const preloadImageSource =
+  "https://stillmed.olympic.org/media/Photos/2016/08/…en-01.jpg?interpolation=lanczos-none&resize=*:800";
 
 function App() {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     LazyImageModal.preload();
+    const img = new Image();
+    img.src = preloadImageSource;
   }, []);
 
   return (
